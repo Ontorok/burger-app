@@ -1,0 +1,20 @@
+import React from 'react';
+
+const functionName = (props) => {
+    return (
+        <div></div>
+    );
+};
+
+export default functionName
+-----------------------------------------
+-----------------------------------------
+import React from 'react';
+
+const functionName = (props) => (
+    <div></div>
+);
+
+
+export default functionName
+
