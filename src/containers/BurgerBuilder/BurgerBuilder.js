@@ -22,7 +22,7 @@ class BurgerBuilder extends Component {
         this.state = {
             ingredients: null,
             totalPrice: 4,
-            purchasable: false,
+            purchasable: true,
             purchasing: false,
             loading: false,
             error: false
@@ -38,10 +38,10 @@ class BurgerBuilder extends Component {
     // }
 
     componentDidMount() {
+        console.log(this.props);
         axios.get('https://react-my-burger-nasir.firebaseio.com/ingredients.json')
             .then(response => {
                 this.setState({ ingredients: response.data })
-                console.log(response);
             })
             .catch(error => {
                 this.setState({ error: true })
@@ -96,30 +96,29 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        //alert('You Continue!!!!');
-        this.setState({ loading: true });
-        const data = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice.toFixed(2),
-            curtomer: {
-                name: 'Nasir Ahmed',
-                address: {
-                    street: 'Master Para',
-                    area: 'PTI',
-                    country: 'Bangladesh'
-                },
-                email: 'nasir@mail.com'
-            },
-            deliveryMethod: 'Fastest'
+        // this.setState({ loading: true });
+        // const data = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice.toFixed(2),
+        //     curtomer: {
+        //         name: 'Nasir Ahmed',
+        //         address: {
+        //             street: 'Master Para',
+        //             area: 'PTI',
+        //             country: 'Bangladesh'
+        //         },
+        //         email: 'nasir@mail.com'
+        //     },
+        //     deliveryMethod: 'Fastest'
 
-        }
-        axios.post('/orders.json', data)
-            .then(response => {
-                this.setState({ loading: false, purchasing: false });
-            })
-            .catch(error => {
-                this.setState({ loading: false, purchasing: false });
-            });
+        // }
+        // axios.post('/orders.json', data)
+        //     .then(response => {
+        //         this.setState({ loading: false, purchasing: false });
+        //     })
+        //     .catch(error => {
+        //         this.setState({ loading: false, purchasing: false });
+        //     });
     }
 
     render() {

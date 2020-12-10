@@ -11,6 +11,7 @@ const controls = [
 ]
 
 const buildControls = (props) => {
+    console.log(props);
     return (
         <div className={buildControlsCss.BuildControls}>
             <p>Total Price : {props.totalPrice}</p>
