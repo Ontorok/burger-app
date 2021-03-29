@@ -9,7 +9,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
-import { ADD_INGREDIENTS, REMOVE_INGREDIENTS } from '../../redux/actions';
+import { ADD_INGREDIENTS, REMOVE_INGREDIENTS } from '../../store/actions';
 class BurgerBuilder extends Component {
     state = {
         purchasable: false,
@@ -60,16 +60,17 @@ class BurgerBuilder extends Component {
                         ingredientAdded={this.props.onIngredientAdded}
                         ingredientRemoved={this.props.onIngredientRemoved}
                         disabled={disabledInfo}
-                        purchasable={this.updatePurchaseState(this.props.ingredients)}
+                        purchasable={this.updatePurchaseState(this.props.ings)}
                         ordered={this.purchaseHandler}
-                        price={this.props.totalPrice} />
+                        price={this.props.price} />
                 </Aux>
             );
-            orderSummary = <OrderSummary
-                ingredients={this.props.ingredients}
-                price={this.props.totalPrice}
-                purchaseCancelled={this.purchaseCancelHandler}
-                purchaseContinued={this.purchaseContinueHandler} />;
+            orderSummary = //<p>testing</p>
+                <OrderSummary
+                    ingredients={this.props.ings}
+                    price={this.props.price}
+                    purchaseCancelled={this.purchaseCancelHandler}
+                    purchaseContinued={this.purchaseContinueHandler} />;
         }
         if (this.state.loading) {
             orderSummary = <Spinner />;
